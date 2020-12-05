@@ -1,3 +1,12 @@
+## Set up
+
+Obtain valid API key from [OpenWeather](https://openweathermap.org/appid#signup).<br />
+Create `.env` file referencing `.env.sample` file and add API key.
+
+## Demo
+
+![](./demo.gif)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
 
 ## Available Scripts
