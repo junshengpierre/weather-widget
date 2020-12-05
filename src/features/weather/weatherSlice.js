@@ -16,22 +16,33 @@ export const fetchWeatherForecast = createAsyncThunk(
 export const weatherSlice = createSlice({
   name: sliceName,
   initialState: {
-    current: null,
-    loading: true,
+    currentWeatherData: null,
+    weatherForecastData: null,
     error: null,
+    loading: false,
   },
   reducers: {},
   extraReducers: {
     [fetchCurrentWeather.pending]: (state, { payload, meta }) => {
+      state.error = null;
       state.loading = true;
     },
     [fetchCurrentWeather.fulfilled]: (state, { payload, meta }) => {
-      state.loading = false;
-      state.current = payload.data;
+      state.currentWeatherLoading = false;
+      state.currentWeatherData = payload.data;
     },
     [fetchCurrentWeather.rejected]: (state, { error, meta }) => {
-      state.loading = false;
       state.error = error;
+      state.currentWeatherData = null;
+      state.loading = false;
+    },
+    [fetchWeatherForecast.fulfilled]: (state, { payload, meta }) => {
+      state.weatherForecastData = payload.data;
+      state.loading = false;
+    },
+    [fetchWeatherForecast.rejected]: (state, { error, meta }) => {
+      state.weatherForecast = null;
+      state.loading = false;
     },
   },
 });
