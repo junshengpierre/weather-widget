@@ -4,9 +4,9 @@
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^1.1.0",
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.3.2",
-    "@testing-library/user-event": "^7.1.2",
+    "@testing-library/jest-dom": "^5.11.6",
+    "@testing-library/react": "^11.2.2",
+    "@testing-library/user-event": "^12.5.0",
     "axios": "^0.19.2",
     "husky": "^4.3.0",
     "lint-staged": "^10.5.3",
@@ -34,7 +34,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --env=jest-environment-jsdom-sixteen",
     "eject": "react-scripts eject",
     "format": "prettier 'src/**/*.{js,jsx,ts,tsx,json,css,scss,md}' --write"
   },
@@ -53,7 +53,10 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "jest-environment-jsdom-sixteen": "^1.0.3",
+    "msw": "^0.24.1"
+  },
   "babelMacros": {
     "twin": {
       "preset": "styled-components"

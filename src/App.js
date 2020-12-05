@@ -68,11 +68,11 @@ function App() {
         <SubmitButton type="submit" value="Search" />
       </Form>
 
-      <Main>
-        {error && <NotFound>City Not Found</NotFound>}
+      <Main data-testid="result-container">
+        {error && <NotFound data-testid="not-found">City Not Found</NotFound>}
 
         {loading && !Boolean(currentWeatherData && weatherForecastData) && (
-          <Loader />
+          <Loader data-testid="loader" />
         )}
 
         {Boolean(currentWeatherData && weatherForecastData) && (
@@ -181,12 +181,16 @@ const SubmitButton = styled.input`
   ${tw`border rounded border-gray-400 px-4 py-1 ml-4`}
 `;
 
-const Loader = styled.div`
-  ${tw`rounded-full h-8 w-8 bg-gray-500 m-48`}
-`;
-
 const Main = styled.div`
   ${tw`border-4 rounded-lg border-gray-600 flex justify-center mb-8`}
+`;
+
+const NotFound = styled.span`
+  ${tw`m-4`}
+`;
+
+const Loader = styled.div`
+  ${tw`rounded-full h-8 w-8 bg-gray-500 m-48`}
 `;
 
 const WeatherContainer = styled.div`
@@ -201,22 +205,20 @@ const CurrentWeatherSection = styled.div`
   ${tw`flex justify-between px-8 mb-6`}
 `;
 
-const WeatherForecastSection = styled.div``;
-
-const DayList = styled.ul`
-  ${tw`flex justify-between`}
-`;
-
-const DayItem = styled.li`
-  ${tw`flex flex-col items-center`}
-`;
-
 const WeatherDetailLeft = styled.div`
   ${tw`flex items-center`}
 `;
 
 const Detail = styled.div`
   ${tw`flex flex-col items-center`}
+`;
+
+const Description = styled.span`
+  ${tw`capitalize font-semibold`}
+`;
+
+const Temperature = styled.span`
+  ${tw`text-3xl font-semibold ml-12`}
 `;
 
 const WeatherDetailRight = styled.ul`
@@ -227,12 +229,14 @@ const Meta = styled.li`
   ${tw`mb-1`}
 `;
 
-const Temperature = styled.span`
-  ${tw`text-3xl font-semibold ml-12`}
+const WeatherForecastSection = styled.div``;
+
+const DayList = styled.ul`
+  ${tw`flex justify-between`}
 `;
 
-const Description = styled.span`
-  ${tw`capitalize font-semibold`}
+const DayItem = styled.li`
+  ${tw`flex flex-col items-center`}
 `;
 
 const DayName = styled.span`
@@ -241,8 +245,4 @@ const DayName = styled.span`
 
 const DayImg = styled.img`
   ${tw`w-16`}
-`;
-
-const NotFound = styled.span`
-  ${tw`m-4`}
 `;
