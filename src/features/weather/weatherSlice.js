@@ -20,29 +20,46 @@ export const weatherSlice = createSlice({
     weatherForecastData: null,
     error: null,
     loading: false,
+    currentWeatherRequestId: undefined,
+    weatherForecastRequestId: undefined,
   },
   reducers: {},
   extraReducers: {
     [fetchCurrentWeather.pending]: (state, { payload, meta }) => {
       state.error = null;
       state.loading = true;
+      state.currentWeatherRequestId = meta.requestId;
     },
     [fetchCurrentWeather.fulfilled]: (state, { payload, meta }) => {
-      state.currentWeatherLoading = false;
-      state.currentWeatherData = payload.data;
+      if (meta.requestId === state.currentWeatherRequestId) {
+        state.currentWeatherData = payload.data;
+        state.currentWeatherRequestId = undefined;
+      }
     },
     [fetchCurrentWeather.rejected]: (state, { error, meta }) => {
-      state.error = error;
-      state.currentWeatherData = null;
-      state.loading = false;
+      if (meta.requestId === state.currentWeatherRequestId) {
+        state.error = error;
+        state.currentWeatherData = null;
+        state.loading = false;
+        state.currentWeatherRequestId = undefined;
+      }
+    },
+    [fetchWeatherForecast.pending]: (state, { payload, meta }) => {
+      state.weatherForecastRequestId = meta.requestId;
     },
     [fetchWeatherForecast.fulfilled]: (state, { payload, meta }) => {
-      state.weatherForecastData = payload.data;
-      state.loading = false;
+      if (meta.requestId === state.weatherForecastRequestId) {
+        state.weatherForecastData = payload.data;
+        state.loading = false;
+        state.weatherForecastRequestId = undefined;
+      }
     },
     [fetchWeatherForecast.rejected]: (state, { error, meta }) => {
-      state.weatherForecast = null;
-      state.loading = false;
+      if (meta.requestId === state.weatherForecastRequestId) {
+        state.weatherForecast = null;
+        state.loading = false;
+        state.weatherForecastRequestId = undefined;
+      }
     },
   },
 });
