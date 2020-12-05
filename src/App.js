@@ -145,7 +145,7 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 const AppContainer = styled.div`
-  ${tw`px-8`}
+  ${tw`px-4 sm:px-8 md:max-w-3xl m-auto`}
 `;
 
 const float = keyframes`
@@ -202,11 +202,11 @@ const CityName = styled.span`
 `;
 
 const CurrentWeatherSection = styled.div`
-  ${tw`flex justify-between px-8 mb-6`}
+  ${tw`flex flex-col sm:flex-row items-center sm:justify-between px-8 mb-6`}
 `;
 
 const WeatherDetailLeft = styled.div`
-  ${tw`flex items-center`}
+  ${tw`flex flex-col sm:flex-row items-center`}
 `;
 
 const Detail = styled.div`
@@ -218,11 +218,11 @@ const Description = styled.span`
 `;
 
 const Temperature = styled.span`
-  ${tw`text-3xl font-semibold ml-12`}
+  ${tw`text-3xl font-semibold sm:ml-12 my-6 sm:my-0`}
 `;
 
 const WeatherDetailRight = styled.ul`
-  ${tw`flex flex-col justify-center`}
+  ${tw`flex flex-col justify-center text-center sm:text-left`}
 `;
 
 const Meta = styled.li`
@@ -232,11 +232,11 @@ const Meta = styled.li`
 const WeatherForecastSection = styled.div``;
 
 const DayList = styled.ul`
-  ${tw`flex justify-between`}
+  ${tw`flex flex-col sm:flex-row items-center sm:justify-between`}
 `;
 
 const DayItem = styled.li`
-  ${tw`flex flex-col items-center`}
+  ${tw`flex sm:flex-col items-center mb-4 sm:mb-0`}
 `;
 
 const DayName = styled.span`
